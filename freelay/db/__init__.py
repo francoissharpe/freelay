@@ -9,7 +9,7 @@ SQLALCHEMY_DATABASE_URL = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
 if SQLALCHEMY_DATABASE_URL:
     if not SQLALCHEMY_DATABASE_URL.startswith("postgresql"):
-        SQLALCHEMY_DATABASE_URL = "postgresql" + "".join(SQLALCHEMY_DATABASE_URL.split(":")[1:])
+        SQLALCHEMY_DATABASE_URL = "postgresql" + ":".join(SQLALCHEMY_DATABASE_URL.split(":")[1:])
     
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
 else:
