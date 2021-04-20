@@ -4,39 +4,30 @@ from pydantic import BaseModel, EmailStr, Field
 
 
 class CloudMailInHeaders(BaseModel):
-    return_path: str = Field(..., alias="Return-Path")
-    received: List[str] = Field(..., alias="Received")
-    date: str = Field(..., alias="Date")
-    from_address: str = Field(..., alias="From")
-    to_address: str = Field(..., alias="To")
-    message_id: str = Field(..., alias="Message-ID")
-    subject: str = Field(..., alias="Subject")
-    mime_version: str = Field(..., alias="Mime-Version")
-    content_type: str = Field(..., alias="Content-Type")
-    delivered_to: str = Field(..., alias="Delivered-To")
-    received_spf: str = Field(..., alias="Received-SPF")
-    authentication_results: str = Field(..., alias="Authentication-Results")
-    user_agent: str = Field(..., alias="User-Agent")
+    received: List[str]
+    date: str
+    from_address: str = Field(..., alias="from")
+    to_address: str = Field(..., alias="to")
+    message_id: str
+    subject: str
+    mime_version: str
+    content_type: str
+    arc_authentication_results: str
 
 
-# class CloudMailInEnvelope(BaseModel):
-#     to_address: str = Field(..., alias="Return-Path")
-#     received: List[str] = Field(..., alias="Received")
-#     date: str = Field(..., alias="Date")
-#     from_address: str = Field(..., alias="From")
-#     to_address: str = Field(..., alias="To")
-#     message_id: str = Field(..., alias="Message-ID")
-#     subject: str = Field(..., alias="Subject")
-#     mime_version: str = Field(..., alias="Mime-Version")
-#     content_type: str = Field(..., alias="Content-Type")
-#     delivered_to: str = Field(..., alias="Delivered-To")
-#     received_spf: str = Field(..., alias="Received-SPF")
-#     authentication_results: str = Field(..., alias="Authentication-Results")
-#     user_agent: str = Field(..., alias="User-Agent")
+class CloudMailInEnvelope(BaseModel):
+    from_address: str = Field(..., alias="from")
+    to_address: str = Field(..., alias="to")
+    recipients: List[str]
+    remote_ip: str
 
 
 class CloudMailIn(BaseModel):
     headers: CloudMailInHeaders
+    envelope: CloudMailInEnvelope
+    plain: str
+    html: str
+    reply_chain: Optional[str]
 #     {
 #   "envelope": {
 #     "to": "to@example.com",
