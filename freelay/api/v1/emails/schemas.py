@@ -23,11 +23,10 @@ class CloudMailInEnvelope(BaseModel):
 
 
 class CloudMailIn(BaseModel):
-    headers: CloudMailInHeaders
+    # headers: CloudMailInHeaders
     envelope: CloudMailInEnvelope
     plain: str
     html: str
-    reply_chain: Optional[str]
 #     {
 #   "envelope": {
 #     "to": "to@example.com",

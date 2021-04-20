@@ -38,7 +38,7 @@ def generate_email_for_user(user_id,  db: Session = Depends(get_db)):
     return methods.generate_email_for_user(db, user_id)
 
 
-@router.get("/emails", response_model=List[schemas.Email], tags=["Email"])
+@router.get("/emails", response_model=List[schemas.Email], tags=["Emails"])
 def get_emails(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     emails = methods.get_all_emails(db, skip=skip, limit=limit)
     return emails
