@@ -22,4 +22,4 @@ def get_user_from_hook(db: Session, recipient: str) -> Optional[User]:
             logging.info(f"Email [{email.address}] belongs to \"{user.email}\"")
             return user
         logging.warning(f"Unable to find owner of email [{email.address}] with owner_id={email.owner_id}")
-    logging.warning(f"Email [{email}] is not assigned to a user. Ignoring...")
+    logging.warning(f"Email [{recipient}] is not assigned to a user. Ignoring...")
