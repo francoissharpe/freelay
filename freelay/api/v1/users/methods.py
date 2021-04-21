@@ -43,7 +43,7 @@ def get_random_string(n=32):
     return ''.join(secrets.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for _ in range(n))
 
 
-def generate_unique_email(db: Session, n=32, domain="freelay.com"):
+def generate_unique_email(db: Session, n=32, domain="freelay.ch"):
     email = get_random_string(n)
     while db.query(models.Email).filter_by(address=email).one_or_none():
         print(email)
