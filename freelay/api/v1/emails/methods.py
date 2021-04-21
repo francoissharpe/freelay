@@ -17,7 +17,7 @@ def get_user_from_email(db: Session, email: Email) -> Optional[User]:
 def get_user_from_hook(db: Session, recipient: str) -> Optional[User]:
     print(recipient)
     print(recipient.split("@")[0])
-    print(db.query(Email).all())
+    [print(e.id, e.address) for e in db.query(Email).all()]
     email = get_email_from_address(db, recipient.split("@")[0])
     if email:
         user = get_user_from_email(db, email)
