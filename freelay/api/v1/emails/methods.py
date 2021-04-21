@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from freelay.api.v1.users.models import User, Email
 
 
-def get_email_from_address(db: Session, email: str) -> Optional[Email]:
-   return db.query(Email).filter_by(address=email).one_or_none()
+def get_email_from_address(db: Session, address: str) -> Optional[Email]:
+   return db.query(Email).filter_by(address=address).one_or_none()
 
 
 def get_user_from_email(db: Session, email: Email) -> Optional[User]:
@@ -15,6 +15,9 @@ def get_user_from_email(db: Session, email: Email) -> Optional[User]:
 
 
 def get_user_from_hook(db: Session, recipient: str) -> Optional[User]:
+    print(recipient)
+    print(recipient.split("@")[0])
+    print(db.query(Email).all())
     email = get_email_from_address(db, recipient.split("@")[0])
     if email:
         user = get_user_from_email(db, email)
