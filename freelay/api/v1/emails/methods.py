@@ -7,7 +7,7 @@ from freelay.api.v1.users.models import User, Email
 
 
 def get_email_from_address(db: Session, address: str) -> Optional[Email]:
-   return db.query(Email).filter_by(address=address).one_or_none()
+    return db.query(Email).filter_by(address=address).one_or_none()
 
 
 def get_user_from_email(db: Session, email: Email) -> Optional[User]:

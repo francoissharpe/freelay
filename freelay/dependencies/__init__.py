@@ -1,9 +1,2 @@
-from freelay.db import SessionLocal
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+from .get_db import get_db
+from .oauth2_scheme import oauth2_scheme, pwd_context

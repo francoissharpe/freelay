@@ -1,6 +1,5 @@
 import logging
 import sys
-from typing import Optional
 
 from fastapi import FastAPI
 
@@ -21,5 +20,3 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Freelay")
 
 app.include_router(api_router)
-
-
